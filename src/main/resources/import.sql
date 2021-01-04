@@ -1,0 +1,2 @@
+INSERT INTO clients (cif, name, address, postal_code, city, province, email, phone, created_at) VALUES ('26111859Y', 'Jorge', 'Isidro 42', '14940', 'Cabra', 'Córdoba', 'jorge@gmail.com', '650580704', '2020-11-30');
+INSERT INTO clients (cif, name, address, postal_code, city, province, email, phone, created_at) VALUES ('24875214V', 'Paco', 'Parrillas 11', '14940', 'Cabra', 'Córdoba', 'paco@gmail.com', '653255851', '2021-01-02');

@@ -27,6 +27,8 @@ public class Client implements Serializable {
 	private String cif;
 	private String name;
 	private String address;
+	
+	@Column(name="postal_code")
 	private String postalCode;
 	private String city;
 	private String province;

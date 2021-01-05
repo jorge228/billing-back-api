@@ -1,14 +1,12 @@
 package com.lozano.billing.back.api.controllers;
 
-import java.util.List;
+import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.lozano.billing.back.api.models.entity.Client;
 import com.lozano.billing.back.api.models.services.IClientService;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
@@ -20,8 +18,15 @@ public class ClientRestController {
 	private IClientService clientService;
 
 	@GetMapping("/clients")
-	public List<Client> index() {
-		return clientService.findAll();
+	public HashMap<String, Object> get() {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("success", true);
+		map.put("data", clientService.findAll());
+		map.put("message", "Get all clients");
+		return map;
 	}
 
+	/*
+	 * public List<Client> index() { return clientService.findAll(); }
+	 */
 }

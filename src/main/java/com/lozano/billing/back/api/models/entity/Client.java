@@ -31,7 +31,7 @@ public class Client implements Serializable {
 	@Column(name="postal_code")
 	private String postalCode;
 	private String city;
-	private String province;
+	private String country;
 	private String email;
 	private String phone;
 	
@@ -87,12 +87,12 @@ public class Client implements Serializable {
 		this.city = city;
 	}
 
-	public String getProvince() {
-		return province;
+	public String getCountry() {
+		return country;
 	}
 
-	public void setProvince(String province) {
-		this.province = province;
+	public void setCountry(String country) {
+		this.country = country;
 	}
 
 	public String getEmail() {

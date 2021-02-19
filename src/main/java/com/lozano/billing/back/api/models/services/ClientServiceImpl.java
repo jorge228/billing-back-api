@@ -14,7 +14,7 @@ public class ClientServiceImpl implements IClientService {
 
 	@Autowired
 	private IClientDao clientDao;
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public List<Client> findAll() {
@@ -35,8 +35,12 @@ public class ClientServiceImpl implements IClientService {
 
 	@Override
 	@Transactional
-	public void delete(Long id) {
-		clientDao.deleteById(id);
+	public Boolean delete(Long id) {
+		if (clientDao.findById(id).isPresent()) {
+			clientDao.deleteById(id);
+			return true;
+		}
+		return false;
 	}
 
 }

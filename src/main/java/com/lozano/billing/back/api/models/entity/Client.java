@@ -8,12 +8,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="clients")
+@Table(name = "clients")
 public class Client implements Serializable {
 
 	/**
@@ -21,23 +22,28 @@ public class Client implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String cif;
 	private String name;
 	private String address;
-	
-	@Column(name="postal_code")
+
+	@Column(name = "postal_code")
 	private String postalCode;
 	private String city;
 	private String country;
 	private String email;
 	private String phone;
-	
-	@Column(name="created_at")
+
+	@Column(name = "created_at")
 	@Temporal(TemporalType.DATE)
 	private Date createdAt;
+
+	@PrePersist
+	public void prePersist() {
+		createdAt = new Date();
+	}
 
 	public Long getId() {
 		return id;

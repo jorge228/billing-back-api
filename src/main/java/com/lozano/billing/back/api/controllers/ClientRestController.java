@@ -1,9 +1,12 @@
 package com.lozano.billing.back.api.controllers;
 
 import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,9 +39,26 @@ public class ClientRestController {
 	}
 
 	@GetMapping("/clients/{id}")
-	@ResponseStatus(HttpStatus.OK)
-	public Client show(@PathVariable Long id) {
-		return clientService.findById(id);
+	// @ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<?> show(@PathVariable Long id) {
+
+		Client client = null;
+		Map<String, Object> map = new HashMap<>();
+
+		try {
+			client = clientService.findById(id);
+		} catch (DataAccessException e) {
+			map.put("message", "Client with " + id + " doesn't exist.");
+			map.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		if (client == null) {
+			map.put("message", "Client with " + id + " doesn't exist.");
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.NOT_FOUND);
+		}
+
+		return new ResponseEntity<Client>(client, HttpStatus.OK);
 	}
 
 	@PostMapping("/clients")

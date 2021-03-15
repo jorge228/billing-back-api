@@ -41,4 +41,9 @@ public class ClientServiceImpl implements IClientService {
 		// }
 	}
 
+	@Override
+	public Integer countClients() {
+		return clientDao.countClients();
+	}
+
 }

@@ -34,7 +34,7 @@ public class ClientRestController {
 		map.put("success", true);
 		map.put("data", clientService.findAll());
 		map.put("message", "Get all clients.");
-		// TODO count
+		map.put("count", clientService.countClients());
 		return map;
 	}
 
@@ -59,12 +59,11 @@ public class ClientRestController {
 			map.put("message", "Client with " + id + " doesn't exist.");
 			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.NOT_FOUND);
 		}
-		// TODO return map with client
-		
+
 		map.put("success", true);
 		map.put("data", client);
 		map.put("message", "Client was found successfully.");
-		
+
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 

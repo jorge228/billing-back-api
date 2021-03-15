@@ -60,7 +60,12 @@ public class ClientRestController {
 			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.NOT_FOUND);
 		}
 		// TODO return map with client
-		return new ResponseEntity<Client>(client, HttpStatus.OK);
+		
+		map.put("success", true);
+		map.put("data", client);
+		map.put("message", "Client was found successfully.");
+		
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 
 	@PostMapping("/clients")

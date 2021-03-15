@@ -112,8 +112,23 @@ public class ClientRestController {
 
 	@DeleteMapping("/clients/{id}")
 	// @ResponseStatus(HttpStatus.NO_CONTENT) //204
-	public Boolean delete(@PathVariable Long id) {
-		return clientService.delete(id);
+	public ResponseEntity<?> delete(@PathVariable Long id) {
+
+		Map<String, Object> map = new HashMap<>();
+
+		try {
+			clientService.delete(id);
+		} catch (DataAccessException e) {
+			map.put("success", false);
+			map.put("message", "Error deleting client.");
+			map.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+
+		map.put("success", true);
+		map.put("message", "Client was deleted successfully.");
+
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
 	}
 
 }

@@ -35,12 +35,10 @@ public class ClientServiceImpl implements IClientService {
 
 	@Override
 	@Transactional
-	public Boolean delete(Long id) {
-		if (clientDao.findById(id).isPresent()) {
-			clientDao.deleteById(id);
-			return true;
-		}
-		return false;
+	public void delete(Long id) {
+		// if (clientDao.findById(id).isPresent()) {
+		clientDao.deleteById(id);
+		// }
 	}
 
 }

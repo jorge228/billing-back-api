@@ -12,6 +12,6 @@ public interface IClientService {
 
 	public Client save(Client client);
 
-	public Boolean delete(Long id);
+	public void delete(Long id);
 
 }

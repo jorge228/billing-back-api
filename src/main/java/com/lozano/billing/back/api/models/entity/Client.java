@@ -25,12 +25,15 @@ public class Client implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Column(nullable = false, unique = true)
 	private String cif;
+
 	private String name;
 	private String address;
 
 	@Column(name = "postal_code")
 	private String postalCode;
+
 	private String city;
 	private String country;
 	private String email;

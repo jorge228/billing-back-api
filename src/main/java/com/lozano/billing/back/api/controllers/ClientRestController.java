@@ -34,7 +34,7 @@ public class ClientRestController {
 		HashMap<String, Object> map = new HashMap<>();
 		map.put("success", true);
 		map.put("data", clientService.findAll());
-		map.put("message", "Get all clients");
+		map.put("message", "Get all clients.");
 		return map;
 	}
 
@@ -48,7 +48,7 @@ public class ClientRestController {
 		try {
 			client = clientService.findById(id);
 		} catch (DataAccessException e) {
-			map.put("message", "Client with " + id + " doesn't exist.");
+			map.put("message", "Error query in database.");
 			map.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
 			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -62,9 +62,25 @@ public class ClientRestController {
 	}
 
 	@PostMapping("/clients")
-	@ResponseStatus(HttpStatus.CREATED)
-	public Client create(@RequestBody Client client) {
-		return clientService.save(client);
+	//@ResponseStatus(HttpStatus.CREATED)
+	public ResponseEntity<?> create(@RequestBody Client client) {
+		
+		Client clientNew = null;
+		Map<String, Object> map = new HashMap<>();
+		
+		try {
+			clientNew = clientService.save(client);
+		} catch (DataAccessException e) {
+			map.put("message", "Error creating new client.");
+			map.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		map.put("success", true);
+		map.put("data", clientNew);
+		map.put("message", "Client was created successfully.");
+		
+		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/clients/{id}")

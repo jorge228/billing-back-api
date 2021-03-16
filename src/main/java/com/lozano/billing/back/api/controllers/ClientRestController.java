@@ -5,6 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -25,6 +28,8 @@ import com.lozano.billing.back.api.models.services.IClientService;
 @RequestMapping("/api")
 public class ClientRestController {
 
+	private static int pageSize = 10;
+
 	@Autowired
 	private IClientService clientService;
 
@@ -36,6 +41,12 @@ public class ClientRestController {
 		map.put("message", "Get all clients.");
 		map.put("count", clientService.countClients());
 		return map;
+	}
+
+	@GetMapping("/clients/page/{page}")
+	public Page<Client> get(@PathVariable Integer page) {
+		Pageable pageable = PageRequest.of(page, pageSize);
+		return clientService.findAll(pageable);
 	}
 
 	@GetMapping("/clients/{id}")

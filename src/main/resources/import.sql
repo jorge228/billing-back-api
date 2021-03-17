@@ -98,3 +98,13 @@ insert into clients (cif, name, address, postal_code, city, country, email, phon
 insert into clients (cif, name, address, postal_code, city, country, email, phone, created_at) values ('746170658-6', 'Rhodia MacGray', 'Barby', null, 'Tsiombe', 'Madagascar', 'rmacgray2p@comcast.net', '558-934-8110', '2020-01-25');
 insert into clients (cif, name, address, postal_code, city, country, email, phone, created_at) values ('411554534-8', 'Adda Talks', 'North', null, 'Zhenchuan', 'China', 'atalks2q@theglobeandmail.com', '731-671-2461', '2020-05-22');
 insert into clients (cif, name, address, postal_code, city, country, email, phone, created_at) values ('558998064-X', 'Vivia Knoller', 'Continental', null, 'Mainri', 'China', 'vknoller2r@youtu.be', '722-781-3612', '2020-03-20');
+
+INSERT INTO users (username, password, enabled) VALUES ('jorge','',1);
+INSERT INTO users (username, password, enabled) VALUES ('admin','',1);
+
+INSERT INTO roles (name) VALUES ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+
+INSERT INTO users_roles (user_id, role_id) VALUES (1, 1);
+INSERT INTO users_roles (user_id, role_id) VALUES (2, 2);
+INSERT INTO users_roles (user_id, role_id) VALUES (2, 1);

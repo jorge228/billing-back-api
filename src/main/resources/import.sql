@@ -99,8 +99,8 @@ INSERT INTO clients (cif, name, address, postal_code, city, country, email, phon
 INSERT INTO clients (cif, name, address, postal_code, city, country, email, phone, created_at) VALUES ('411554534-8', 'Adda Talks', 'North', null, 'Zhenchuan', 'China', 'atalks2q@theglobeandmail.com', '731-671-2461', '2020-05-22');
 INSERT INTO clients (cif, name, address, postal_code, city, country, email, phone, created_at) VALUES ('558998064-X', 'Vivia Knoller', 'Continental', null, 'Mainri', 'China', 'vknoller2r@youtu.be', '722-781-3612', '2020-03-20');
 
-INSERT INTO users (username, password, enabled) VALUES ('jorge','',1);
-INSERT INTO users (username, password, enabled) VALUES ('admin','',1);
+INSERT INTO users (username, password, status) VALUES ('jorge','',1);
+INSERT INTO users (username, password, status) VALUES ('admin','',1);
 
 INSERT INTO roles (name) VALUES ('ROLE_USER');
 INSERT INTO roles (name) VALUES ('ROLE_ADMIN');

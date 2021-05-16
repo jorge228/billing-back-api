@@ -1,11 +1,10 @@
 package com.lozano.billing.back.api.models.dao;
 
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.lozano.billing.back.api.models.entity.User;
 
-public interface IUserDao extends CrudRepository<User, Long> {
-// public interface IUserDao extends JpaRepository<User, Long>
+public interface IUserDao extends JpaRepository<User, Long> {
 	public User findByUsername(String username);
 
 	// @Query("select u from User u where u.username=?1")

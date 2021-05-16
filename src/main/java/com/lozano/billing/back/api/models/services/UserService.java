@@ -43,7 +43,7 @@ public class UserService implements UserDetailsService {
 				.peek(authority -> logger.info("Role: " + authority.getAuthority()))
 				.collect(Collectors.toList());
 		
-		return new User(user.getUsername(), user.getPassword(), user.getEnabled(), true, true, true, authorities);
+		return new User(user.getUsername(), user.getPassword(), user.getStatus(), true, true, true, authorities);
 	
 	}
 
